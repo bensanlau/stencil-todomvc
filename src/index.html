@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html dir="ltr" lang="en">
+
 <head>
   <meta charset="utf-8">
   <title>Stencil Starter App</title>
-  <meta name="Description" content="Welcome to the Stencil App Starter. You can use this starter to build entire apps all with web components using Stencil!">
+  <meta name="Description" content="Welcome to the Stencil Todo.">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0">
-  <meta name="theme-color" content="#16161d">
+  <meta name="theme-color" content="#b83f45">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta http-equiv="x-ua-compatible" content="IE=Edge">
 
@@ -17,9 +18,40 @@
   <link rel="icon" type="image/x-icon" href="/assets/icon/favicon.ico">
   <link rel="manifest" href="/manifest.json">
 </head>
+
 <body>
 
-  <app-root></app-root>
-
+  <section class="todoapp">
+    <header class="header">
+      <h1>todos</h1>
+      <input class="new-todo" placeholder="What needs to be done?" autofocus>
+    </header>
+    <section style="display:none" class="main">
+      <input id="toggle-all" class="toggle-all" type="checkbox">
+      <label for="toggle-all">Mark all as complete</label>
+      <ul class="todo-list"></ul>
+      <footer class="footer">
+        <span class="todo-count"></span>
+        <ul class="filters">
+          <li>
+            <a href="#/" class="selected">All</a>
+          </li>
+          <li>
+            <a href="#/active">Active</a>
+          </li>
+          <li>
+            <a href="#/completed">Completed</a>
+          </li>
+        </ul>
+        <button class="clear-completed">Clear completed</button>
+      </footer>
+    </section>
+  </section>
+  <footer class="info">
+    <p>Double-click to edit a todo</p>
+    <p>Written by <a href="http://benlau.net">Ben Lau</a></p>
+    <p>Part of <a href="http://todomvc.com">TodoMVC</a></p>
+  </footer>
 </body>
+
 </html>
