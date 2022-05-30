@@ -6,20 +6,32 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 export namespace Components {
-
+    interface TodoApp {
+    }
 }
 declare global {
+    interface HTMLTodoAppElement extends Components.TodoApp, HTMLStencilElement {
+    }
+    var HTMLTodoAppElement: {
+        prototype: HTMLTodoAppElement;
+        new (): HTMLTodoAppElement;
+    };
     interface HTMLElementTagNameMap {
+        "todo-app": HTMLTodoAppElement;
     }
 }
 declare namespace LocalJSX {
+    interface TodoApp {
+    }
     interface IntrinsicElements {
+        "todo-app": TodoApp;
     }
 }
 export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
+            "todo-app": LocalJSX.TodoApp & JSXBase.HTMLAttributes<HTMLTodoAppElement>;
         }
     }
 }
