@@ -1,4 +1,4 @@
-import { Component, h, State } from '@stencil/core';
+import { Component, h } from '@stencil/core';
 @Component({
   tag: 'todo-app',
   styleUrl: 'todo-app.css',
