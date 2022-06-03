@@ -1,0 +1,5 @@
+li.sc-todo-item:last-child {
+  border-bottom: 1px solid #ededed;
+  border-top: 1px solid #ededed;
+  margin-bottom: -1px;
+}
