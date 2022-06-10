@@ -9,6 +9,7 @@ export namespace Components {
     interface TodoApp {
     }
     interface TodoFooter {
+        "filter": string;
     }
     interface TodoInput {
         "autofocus": boolean;
@@ -22,6 +23,7 @@ export namespace Components {
         "itemTitle": string;
     }
     interface TodoList {
+        "filter": string;
     }
     interface TodoToggle {
         "allChecked": boolean;
@@ -77,6 +79,7 @@ declare namespace LocalJSX {
     interface TodoApp {
     }
     interface TodoFooter {
+        "filter"?: string;
     }
     interface TodoInput {
         "autofocus"?: boolean;
@@ -90,6 +93,7 @@ declare namespace LocalJSX {
         "itemTitle"?: string;
     }
     interface TodoList {
+        "filter"?: string;
     }
     interface TodoToggle {
         "allChecked"?: boolean;

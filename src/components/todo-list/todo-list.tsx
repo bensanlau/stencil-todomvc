@@ -1,4 +1,4 @@
-import { Component, h, State } from '@stencil/core';
+import { Component, h, State, Prop } from '@stencil/core';
 import todoStore from '../../utils/store';
 
 type Item = {
@@ -13,7 +13,7 @@ type Item = {
 })
 export class TodoList {
   @State() items: any[];
-  @State() filter: string;
+  @Prop() filter: string;
   
   componentWillLoad() {
     const storage = JSON.parse(localStorage.getItem('todos-stencil')) || [];
@@ -26,13 +26,12 @@ export class TodoList {
     });
 
     todoStore.onChange('newItem', title => this.addItem(title));
-    todoStore.onChange('filter', filter => this.filter = filter);
   }
 
   componentWillRender() {
-    if (this.filter === 'active') {
+    if (this.filter.includes('active')) {
       this.items = todoStore.get('items').filter((item) => !item.completed);
-    } else if (this.filter === 'completed') {
+    } else if (this.filter.includes('completed')) {
       this.items = todoStore.get('items').filter((item) => item.completed);
     } else {
       this.items = todoStore.get('items');
@@ -63,7 +62,7 @@ export class TodoList {
             <todo-item itemId={item.id} completed={item.completed} itemTitle={item.title} />
           )}
         </ul>
-        <todo-footer />
+        <todo-footer filter={this.filter} />
       </section>
     );
   }

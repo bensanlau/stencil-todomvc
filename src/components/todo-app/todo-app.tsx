@@ -1,10 +1,24 @@
-import { Component, h } from '@stencil/core';
+import { Component, h, State } from '@stencil/core';
+import todoStore from '../../utils/store';
 @Component({
   tag: 'todo-app',
   styleUrl: 'todo-app.css',
 })
 
 export class TodoApp {
+  @State() filter: string;
+
+  componentWillLoad() {
+    this.applyFilterByHash();
+    
+    window.addEventListener('hashchange', () => {
+      this.applyFilterByHash();
+    });
+  }
+
+  applyFilterByHash() {
+    this.filter = window.location.hash;
+  }
   // saveEdit(item, value) {
   //   console.log(item, value);
   //   const idToEdit = item.dataset.id;
@@ -55,7 +69,7 @@ export class TodoApp {
           />
         </header>
 
-        <todo-list />
+        <todo-list filter={this.filter} />
       </section>
 
     );
