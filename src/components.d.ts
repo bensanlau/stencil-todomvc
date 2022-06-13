@@ -12,10 +12,7 @@ export namespace Components {
         "filter": string;
     }
     interface TodoInput {
-        "autofocus": boolean;
         "classes": string;
-        "placeholder": string;
-        "purpose": string;
     }
     interface TodoItem {
         "completed": boolean;
@@ -82,10 +79,7 @@ declare namespace LocalJSX {
         "filter"?: string;
     }
     interface TodoInput {
-        "autofocus"?: boolean;
         "classes"?: string;
-        "placeholder"?: string;
-        "purpose"?: string;
     }
     interface TodoItem {
         "completed"?: boolean;

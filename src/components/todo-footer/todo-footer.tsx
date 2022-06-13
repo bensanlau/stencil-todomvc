@@ -20,10 +20,6 @@ export class TodoFooter {
   componentWillRender() {
     this.checkCompletedItems();
     this.getItemCount();
-
-    document.querySelectorAll('.filters a').forEach(link => 
-      link.classList.toggle('selected', link.getAttribute('href') === this.filter)
-    );
   }
   
   checkCompletedItems() {
@@ -44,9 +40,9 @@ export class TodoFooter {
       <footer class="footer">
         <span class="todo-count">{this.todosCount} {this.todosCount === 1 ? 'item' : 'items'} left</span>
         <ul class="filters">
-          <li><a href="#/" class="selected">All</a></li>
-          <li><a href="#/active">Active</a></li>
-          <li><a href="#/completed">Completed</a></li>
+          <li><a href="#/" class={{ 'selected': this.filter === '' }}>All</a></li>
+          <li><a href="#/active" class={{ 'selected':this.filter === 'active' }}>Active</a></li>
+          <li><a href="#/completed" class={{ 'selected': this.filter === 'completed' }}>Completed</a></li>
         </ul>
         <button class="clear-completed" style={{ display: this.hasCompletedItems ? 'block' : 'none'}}
           onClick={() => this.clearCompleted()}>Clear completed</button>

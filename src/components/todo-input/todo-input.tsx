@@ -1,4 +1,4 @@
-import { Component, h, Prop } from '@stencil/core';
+import { Component, h, Prop, State, Listen } from '@stencil/core';
 import todoStore from '../../utils/store';
 
 @Component({
@@ -6,29 +6,32 @@ import todoStore from '../../utils/store';
   styleUrl: 'todo-input.css',
 })
 export class TodoInput {
-  @Prop() autofocus: boolean;
+  @State() inputValue: string;
   @Prop() classes: string;
-  @Prop() placeholder: string;
-  @Prop() purpose: string;
 
-  handleKeyUp(event: any) {
-    const input = event.currentTarget;
-    const value = input.value;
+  input: HTMLInputElement;
 
-    if (event.code === 'Enter' && value) {
-      todoStore.set('newItem', value);
-      input.value = '';
+  @Listen('keydown')
+  handleKeyUp(event: KeyboardEvent) {
+    if (event.code === 'Enter' && this.inputValue) {
+      todoStore.set('newItem', this.inputValue);
+      this.input.value = '';
     }
+  }
+
+  componentDidLoad() {
+    setTimeout(() => this.input.focus(), 0); // still doesn't bloody focus
+  }
+
+  handleInput() {
+    this.inputValue = this.input.value;
   }
 
   render() {
     return (
-      <input  
-        autofocus={this.autofocus} // It doens't seem to autofocus
-        class={this.classes}
-        placeholder={this.placeholder}
-        onKeyUp={(event) => this.handleKeyUp(event)}
-        data-purpose={this.purpose}
+      <input class="new-todo" placeholder="What needs to be done?"
+        ref={(el) => this.input = el as HTMLInputElement}
+        onInput={this.handleInput.bind(this)}
       />
     );
   }

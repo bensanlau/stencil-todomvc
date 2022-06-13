@@ -29,9 +29,9 @@ export class TodoList {
   }
 
   componentWillRender() {
-    if (this.filter.includes('active')) {
+    if (this.filter === 'active') {
       this.items = todoStore.get('items').filter((item) => !item.completed);
-    } else if (this.filter.includes('completed')) {
+    } else if (this.filter === 'completed') {
       this.items = todoStore.get('items').filter((item) => item.completed);
     } else {
       this.items = todoStore.get('items');
